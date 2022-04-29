@@ -6,8 +6,8 @@ import { CompleteTodos } from "./components/CompleteTodos";
 
 export const App = () => {
   const [todoText, setTodoText] = useState("");
-  const [inCompleteTodos, setInCompleteTodos] = useState(["aaa", "bbb", "ccc"]);
-  const [completeTodos, setCompleteTodos] = useState(["ddd", "fff"]);
+  const [inCompleteTodos, setInCompleteTodos] = useState(["1", "2", "3"]);
+  const [completeTodos, setCompleteTodos] = useState([]);
 
   const onChangeTodoText = (event) => setTodoText(event.target.value);
   const onClickAdd = () => {
@@ -47,7 +47,13 @@ export const App = () => {
         todoText={todoText}
         onChange={onChangeTodoText}
         onClick={onClickAdd}
+        disabled={inCompleteTodos.length >= 5}
       ></InputTodo>
+      {inCompleteTodos.length >= 5 && (
+        <p style={{ color: "red" }}>
+          登録できるtodosは５個まです、消化してください
+        </p>
+      )}
       <InCompleteTodos
         todos={inCompleteTodos}
         onClickDelete={onClickDelete}
